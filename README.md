@@ -1,7 +1,3 @@
-# neurolab-mongo-python
-
-![image](https://user-images.githubusercontent.com/57321948/196933065-4b16c235-f3b9-4391-9cfe-4affcec87c35.png)
-
 ### Step 1 - Install the requirements
 
 ```bash
@@ -66,8 +62,9 @@ First check all commits done using
 ```
 git log
 ```
-To move the HEAD pointer reference to a given commit msg having commit_ID without deleting the earlier commit contents
-git reset is used to undo local changes to the state of a Git repo
+To move the HEAD pointer reference to a given commit msg having commit_ID without deleting the earlier commit contents.
+
+`git reset` is used to undo local changes to the state of a Git repo
 ```
 git reset --soft <first_4_words_of_commit_ID>
 ```
