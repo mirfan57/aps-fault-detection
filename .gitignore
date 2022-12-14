@@ -2,7 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-artifact
+artifacts
 # C extensions
 *.so
 demotest.py
