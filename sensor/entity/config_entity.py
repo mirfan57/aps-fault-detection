@@ -6,6 +6,9 @@ from datetime import datetime
 FILE_NAME = "sensor.csv"
 TRAIN_FILE_NAME = "train.csv"
 TEST_FILE_NAME = "test.csv"
+TRANSFORMER_OBJ_FILE_NAME = "transformer.pkl"
+TARGET_ENCODER_OBJ_FILE_NAME = "target_encoder.pkl"
+MODEL_FILE_NAME = "model.pkl"
 
 class TrainingPipelineConfig:
     # whenever we are running this we are creating a new folder each time with timestamp
@@ -47,7 +50,18 @@ class DataValidationConfig:
         self.missing_threshold:float = 0.2
         self.base_file_path = os.path.join("aps_failure_training_set1.csv")
         
-class DataTransformationConfig:...
+class DataTransformationConfig:
+
+    def __init__(self, training_pipeline_config:TrainingPipelineConfig):
+        # to create a data_transformation folder in the timestamp folder inside the artifact directory
+        self.data_transformation_dir = os.path.join(training_pipeline_config.artifact_dir, "data_transformation")
+        # storing data transformation object for future use in prediction pipelines
+        self.transform_object_path = os.path.join(self.data_transformation_dir, "transformer", TRANSFORMER_OBJ_FILE_NAME)
+        self.transformed_train_path = os.path.join(self.data_transformation_dir, "transformed", TRAIN_FILE_NAME.replace("csv", "npz"))
+        self.transformed_test_path = os.path.join(self.data_transformation_dir, "transformed", TEST_FILE_NAME.replace("csv", "npz"))
+        # file for target encoding
+        self.target_encoder_path = os.path.join(self.data_transformation_dir, "target_encoder", TARGET_ENCODER_OBJ_FILE_NAME)
+
 class ModelTrainerConfig:...
 class ModelEvaluationConfig:...
 class ModelPusherConfig:...

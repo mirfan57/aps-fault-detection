@@ -7,7 +7,7 @@ artifacts
 *.so
 demotest.py
 logs
-artifacts
+artifact
 raw_data
 # Distribution / packaging
 .Python
