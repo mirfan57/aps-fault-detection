@@ -56,7 +56,7 @@ def convert_columns_to_float(df:pd.DataFrame, exclude_columns:list)->pd.DataFram
 def save_object(file_path:str, obj:object) -> None:
     try:
         logging.info("Entered the save_object method of the utils class")
-        os.makedirs(file_path, exist_ok = True)
+        os.makedirs(os.path.dirname(file_path), exist_ok = True)
         with open(file_path, "wb") as file_obj:
             dill.dump(obj, file_obj)
             # dill also saves object in a pickle file

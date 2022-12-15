@@ -11,12 +11,13 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.impute import SimpleImputer     # populate some values for the missing rows
 from sklearn.preprocessing import RobustScaler    # scaling to minimize the effect of outliers
 from imblearn.combine import SMOTETomek    # to generate some data for the minority class
+from sensor.config import TARGET_COLUMN
 
 
 class DataTransformation:
 
     def __init__(self, data_transformation_config:config_entity.DataTransformationConfig, 
-                 data_ingestion_artifact:config_entity.DataIngestionArtifact):
+                 data_ingestion_artifact:artifact_entity.DataIngestionArtifact):
         try:
             self.data_ingestion_artifact = data_ingestion_artifact
             self.data_transformation_config = data_transformation_config

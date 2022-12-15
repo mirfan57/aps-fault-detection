@@ -62,6 +62,14 @@ class DataTransformationConfig:
         # file for target encoding
         self.target_encoder_path = os.path.join(self.data_transformation_dir, "target_encoder", TARGET_ENCODER_OBJ_FILE_NAME)
 
-class ModelTrainerConfig:...
+class ModelTrainerConfig:
+
+    def __init__(self, training_pipeline_config:TrainingPipelineConfig):
+        self.model_trainer_dir = os.path.join(training_pipeline_config.artifact_dir, "model_trainer")
+        # save our model in model_path
+        self.model_path = os.path.join(self.model_trainer_dir, "model", MODEL_FILE_NAME)
+        self.expected_score = 0.7
+        self.overfitting_threshold = 0.1
+
 class ModelEvaluationConfig:...
 class ModelPusherConfig:...
