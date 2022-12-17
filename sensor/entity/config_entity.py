@@ -71,5 +71,21 @@ class ModelTrainerConfig:
         self.expected_score = 0.7
         self.overfitting_threshold = 0.1
 
-class ModelEvaluationConfig:...
-class ModelPusherConfig:...
+class ModelEvaluationConfig:
+
+    def __init__(self, training_pipeline_config:TrainingPipelineConfig):
+        # if train model is performing better by 1%, then we can accept it
+        self.change_threshold = 0.01
+
+class ModelPusherConfig:
+
+    def __init__(self, training_pipeline_config:TrainingPipelineConfig):
+        self.model_pusher_dir = os.path.join(training_pipeline_config.artifact_dir, "model_pusher")
+        # creating a directory named saved_models outside artifact directory i.e., in root directory
+        self.saved_models_dir = os.path.join("saved_models")
+        # also creating a directory with name saved_models inside artifact directory
+        self.pusher_model_dir = os.path.join(self.model_pusher_dir,"saved_models")
+        # above file path is artifact/model_pusher/saved_models
+        self.pusher_model_path = os.path.join(self.pusher_model_dir, MODEL_FILE_NAME)
+        self.pusher_transformer_path = os.path.join(self.pusher_model_dir, TRANSFORMER_OBJ_FILE_NAME)
+        self.pusher_target_encoder_path = os.path.join(self.pusher_model_dir, TARGET_ENCODER_OBJ_FILE_NAME)

@@ -19,6 +19,7 @@ class DataTransformation:
     def __init__(self, data_transformation_config:config_entity.DataTransformationConfig, 
                  data_ingestion_artifact:artifact_entity.DataIngestionArtifact):
         try:
+            logging.info(f"{'>>'*20}  Data Transformation {'<<'*20}")
             self.data_ingestion_artifact = data_ingestion_artifact
             self.data_transformation_config = data_transformation_config
         except Exception as e:
@@ -68,7 +69,7 @@ class DataTransformation:
             input_feature_test_arr = transformation_pipeline.transform(input_feature_test_df)
 
             # using library to balance our dataset as "neg" class is around 35K and "pos" class are only 1K
-            smt = SMOTETomek(random_state=21)
+            smt = SMOTETomek()   # generates new data to balance ratio of minority and majority class
             logging.info(f"Before resampling in training set Input: {input_feature_train_arr.shape} Target: {target_feature_train_arr.shape}")
             input_feature_train_arr, target_feature_train_arr = smt.fit_resample(input_feature_train_arr, target_feature_train_arr)
             logging.info(f"After resampling in training set Input: {input_feature_train_arr.shape} Target: {target_feature_train_arr.shape}")

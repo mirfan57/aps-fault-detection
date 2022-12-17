@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 artifacts
+# custom
+prediction
+saved_models
 # C extensions
 *.so
 demotest.py
